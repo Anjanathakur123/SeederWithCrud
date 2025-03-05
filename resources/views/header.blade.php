@@ -16,6 +16,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/userData">User Data</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/categories">Add Category</a>
+                </li>
             </ul>
         </div>
     </div>

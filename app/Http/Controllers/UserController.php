@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UserRequest;
+use App\Exceptions;
 
 class UserController extends Controller
 {
@@ -20,7 +21,9 @@ class UserController extends Controller
     {
 
         $users = User::with('role')->paginate(5);
+
         return view('allData', compact('users'));
+
     }
 
     public function edit($id)
@@ -43,7 +46,7 @@ class UserController extends Controller
               User::where('id', $id)->update($data);
             return redirect('/userData')->with('success', 'User updated successfully');
     }
-    catch (\exception $ex) {
+    catch (\Exception $ex) {
         return response()->back()->with('error', $ex->getMessage());
     }
 }
@@ -51,12 +54,12 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
+
         try {
             $user = User::create($request->all());
-
-            return redirect('/userData')->with('success', 'Registration Successful');
+      return redirect('/userData')->with('success', 'Registration Successful');
         }
-        catch (\exception $ex) {
+        catch (\Exception $ex) {
 
             return response()->back()->with('error', $ex->getMessage());
         }

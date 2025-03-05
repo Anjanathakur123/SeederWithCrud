@@ -8,32 +8,40 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
-    </head>
+</head>
 
 <body>
-@include('header')
+    @include('header')
     <div class="container mt-5">
 
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <form action="{{route('store')}}" style="border:2px solid black;" class="p-5" method="POST">
+                    <form action="{{ route('store') }}" style="border:2px solid black;" class="p-5" method="POST">
                         <h3 class="text-center">User Data</h3>
                         @csrf
                         <div class="mb-3">
                             <label class="form-label">User Name:</label>
-                            <input type="text" name="name" class="form-control" required>
-
+                            <input type="text" name="name" class="form-control  @error('name') is-invalid @enderror"  required>
+                            @error('name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Email:</label>
                             <input type="text" name="email" class="form-control" required>
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label">City:</label>
                             <input type="text" name="city" class="form-control" required>
+                            @error('city')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="roleSelect" class="form-label">Select Role</label>
